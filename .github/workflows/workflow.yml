@@ -1,0 +1,37 @@
+# my workflow
+name: my first workflow
+# trigger: webhook event
+on:[push, pull_request]
+# job
+jobs: 
+  job_1:
+  name: my first job
+  runs-on: ubuntu-lastest
+  steps: 
+    - name: my first step
+      uses: action/checkout@v2
+      
+    - name: my second step
+      run: echo "hello world"
+      shell: bash
+
+    - name: my third step
+      run: |
+        echo "first hello"
+        echo "second hello"
+      shell: bash
+
+    - name: the job has suceeded
+      if: ${{ success() }}
+      run: echo "job1_success"
+    
+  job_2:
+  name: my second job
+  runs-on: ubuntu-lastest
+  steps: 
+    - name: my first step
+      uses: action/checkout@v2
+
+    - name: the job has suceeded
+      if: ${{ success() }}
+      run: echo " success"
