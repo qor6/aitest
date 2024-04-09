@@ -1,37 +1,64 @@
-# my workflow
 name: my first workflow
-# trigger: webhook event
-on:[push, pull_request]
-# job
-jobs: 
+#Trigger Webhook event
+on: [push, pull_request]
+
+jobs:
+  # job
   job_1:
-  name: my first job
-  runs-on: ubuntu-lastest
-  steps: 
-    - name: my first step
-      uses: action/checkout@v2
+    name: My first job
+    runs-on: ubuntu-latest
+    steps:
+     - name: my first step
+       uses: actions/checkout@v2
+
+     - name: my second step
+       run: echo "Hello world"
+       shell: bash
+
+     - name: my shird step
+       run: |
+         echo "first hello"
+         echo "second hell!"
+       shell: bash
+
+     - name: The job has succeeded
+       if: ${{ sucess() }}
+       run: echo "Successfully completed"
+       
+# # my workflow
+# name: my first workflow
+# # trigger: webhook event
+# on:[push, pull_request]
+# # job
+# jobs: 
+#   job_1:
+#   name: my first job
+#   runs-on: ubuntu-lastest
+#   steps: 
+#     - name: my first step
+#       uses: action/checkout@v2
       
-    - name: my second step
-      run: echo "hello world"
-      shell: bash
+#     - name: my second step
+#       run: echo "hello world"
+#       shell: bash
 
-    - name: my third step
-      run: |
-        echo "first hello"
-        echo "second hello"
-      shell: bash
+#     - name: my third step
+#       run: |
+#         echo "first hello"
+#         echo "second hello"
+#       shell: bash
 
-    - name: the job has suceeded
-      if: ${{ success() }}
-      run: echo "job1_success"
+#     - name: the job has suceeded
+#       if: ${{ success() }}
+#       run: echo "job1_success"
     
-  job_2:
-  name: my second job
-  runs-on: ubuntu-lastest
-  steps: 
-    - name: my first step
-      uses: action/checkout@v2
+#   job_2:
+#   name: my second job
+#   runs-on: ubuntu-lastest
+#   steps: 
+#     - name: my first step
+#       uses: action/checkout@v2
 
-    - name: the job has suceeded
-      if: ${{ success() }}
-      run: echo " success"
+#     - name: the job has suceeded
+#       if: ${{ success() }}
+#       run: echo " success"
